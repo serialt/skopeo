@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - master
+      - main
   pull_request:
     branches:
       - master
+      - main
   schedule:
-    - cron:  '0 1 * * *'
+    - cron:  '0 2 * * 1'
   workflow_dispatch:
 
 
@@ -53,8 +55,8 @@ jobs:
               
               echo "::debug::[Push file]"
               echo "${t}" >> version.txt
-              git config --global user.email "lework@yeah.net"
-              git config --global user.name "lework"
+              git config --global user.email "t@imau.cc"
+              git config --global user.name "serialt"
               git config --global --add safe.directory /github/workspace
               git add version.txt
               git commit -m "$APP $ADD_TAG (Github Actions Automatically Built in `date +"%Y-%m-%d %H:%M"`)"
