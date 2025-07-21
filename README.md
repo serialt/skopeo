@@ -1,4 +1,4 @@
-# skopeo-bin
+# skopeo bin
 
 [![Build](https://github.com/serialt/skopeo-bin/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/serialt/skopeo-bin/actions/workflows/build.yml)
 
