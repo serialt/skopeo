@@ -86,18 +86,7 @@ jobs:
         if: ${{ steps.build_skopeo.outputs.ADD_TAG != '' }}
         with:
           token: ${{ secrets.TOKEN }}
-          tag_name: "${{ steps.build_skopeo.outputs.ADD_TAG }}"
+          tag_name: ${{ steps.build_skopeo.outputs.ADD_TAG }}
           files: |
-            ./skopeo/bin/skopeo-linux-amd64
-            ./skopeo/bin/skopeo-linux-amd64.md5
-            ./skopeo/bin/skopeo-linux-amd64.sha256
-            ./skopeo/bin/skopeo-linux-arm64
-            ./skopeo/bin/skopeo-linux-arm64.md5
-            ./skopeo/bin/skopeo-linux-arm64.sha256
-            ./skopeo/bin/skopeo-darwin-amd64
-            ./skopeo/bin/skopeo-darwin-amd64.md5
-            ./skopeo/bin/skopeo-darwin-amd64.sha256
-            ./skopeo/bin/skopeo-darwin-arm64
-            ./skopeo/bin/skopeo-darwin-arm64.md5
-            ./skopeo/bin/skopeo-darwin-arm64.sha256
+            ./skopeo/bin/skopeo-{linux,darwin}-{amd64,arm64}{,.md5,.sha256}
           body_path: ./CHECKSUMS.txt
