@@ -81,12 +81,19 @@ jobs:
         with:
           github_token: ${{ secrets.TOKEN }}
           branch: ${{ github.ref }}
+      - name: List release files
+        if: ${{ steps.build_skopeo.outputs.ADD_TAG != '' }}
+        run: ls -la ./skopeo/bin/
       - name: Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         if: ${{ steps.build_skopeo.outputs.ADD_TAG != '' }}
         with:
           token: ${{ secrets.TOKEN }}
           tag_name: ${{ steps.build_skopeo.outputs.ADD_TAG }}
           files: |
-            ./skopeo/bin/skopeo-{linux,darwin}-{amd64,arm64}{,.md5,.sha256}
+            ./skopeo/bin/skopeo-linux-amd64*
+            ./skopeo/bin/skopeo-linux-arm64*
+            ./skopeo/bin/skopeo-darwin-amd64*
+            ./skopeo/bin/skopeo-darwin-arm64*
           body_path: ./CHECKSUMS.txt
+          fail_on_unmatched_files: true
